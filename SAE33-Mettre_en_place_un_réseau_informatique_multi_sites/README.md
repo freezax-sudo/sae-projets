@@ -1,7 +1,7 @@
 Ce projet, réalisé dans le cadre d'une SAE scolaire, consiste à concevoir une infrastructure réseau multisites sécurisée pour l’entreprise fictive Beerok, spécialiste de la chaussure sportive.
 L'objectif principal était de répondre aux besoins de connectivité, de sécurité et de haute disponibilité à travers la mise en place d'un réseau performant et adapté.
 
- -- Cœur de réseau --
+Cœur de réseau :
 L’architecture du cœur de réseau a été conçue pour garantir une connectivité optimale entre les sites, tout en assurant la redondance, l’isolation et la tolérance aux pannes.
 
  --- Protocoles utilisés ---
@@ -16,7 +16,7 @@ L’architecture du cœur de réseau a été conçue pour garantir une connectiv
 
 
 
- -- Cybersécurité --
+Cybersécurité :
 La sécurité a été un enjeu clé dans ce projet, visant à protéger les données sensibles de l’entreprise fictive Beerok tout en garantissant une infrastructure résiliente.
 
  --- Audits et tests d’intrusion ---
