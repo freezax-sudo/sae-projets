@@ -1,0 +1,106 @@
+SIEGE-CE01#sh run
+
+--------------- Routeur secondaire Siège ---------------
+
+hostname SIEGE-CE01
+
+--------------- Exclusion d'adresse pour dhcp ---------------
+
+ip dhcp excluded-address 100.30.1.254
+ip dhcp excluded-address 100.30.10.254
+ip dhcp excluded-address 100.30.20.254
+ip dhcp excluded-address 100.30.30.254
+ip dhcp excluded-address 100.30.40.254
+
+
+--------------- DHCP VLAN 10, 20, 30, 40 ---------------
+
+ip dhcp pool VLAN10
+   network 100.30.10.0 255.255.255.0
+   default-router 100.30.10.254
+   dns-server 100.30.1.1
+   lease 7
+!
+ip dhcp pool VLAN20
+   network 100.30.20.0 255.255.255.0
+   default-router 100.30.20.254
+   dns-server 100.30.1.1
+   lease 7
+!
+ip dhcp pool VLAN30
+   network 100.30.30.0 255.255.255.0
+   default-router 130.30.30.254
+   dns-server 100.30.1.1
+   lease 7
+!
+ip dhcp pool VLAN40
+   network 100.30.40.0 255.255.255.0
+   default-router 100.30.40.254
+   dns-server 100.30.1.1
+   lease 7
+
+
+--------------- Config interfaces ---------------
+
+interface GigabitEthernet0/0
+ description LIAISON gns3
+ ip address 10.1.30.6 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ description LIAISON Switch
+ no ip address
+ duplex auto
+ speed auto
+!
+
+
+--------------- Configuration sous-interfaces avec VRRP ---------------
+
+interface GigabitEthernet0/1.1
+ description VLAN 1
+ encapsulation dot1Q 1 native
+ ip address 100.30.1.252 255.255.255.0
+ ip helper-address 100.30.1.254
+ vrrp 1 ip 100.30.1.254
+ vrrp 1 priority 110
+!
+interface GigabitEthernet0/1.10
+ description VLAN 10
+ encapsulation dot1Q 10
+ ip address 100.30.10.252 255.255.255.0
+ vrrp 10 ip 100.30.10.254
+ vrrp 10 priority 110
+!
+interface GigabitEthernet0/1.20
+ description VLAN 20
+ encapsulation dot1Q 20
+ ip address 100.30.20.252 255.255.255.0
+ vrrp 20 ip 100.30.20.254
+ vrrp 20 priority 110
+!
+interface GigabitEthernet0/1.30
+ description VLAN 30
+ encapsulation dot1Q 30
+ ip address 100.30.30.252 255.255.255.0
+ vrrp 30 ip 100.30.30.254
+ vrrp 30 priority 110
+!
+interface GigabitEthernet0/1.40
+ description VLAN 40
+ encapsulation dot1Q 40
+ ip address 100.30.40.252 255.255.255.0
+ vrrp 40 ip 100.30.40.254
+ vrrp 40 priority 110
+
+
+--------------- Config BGP ---------------
+
+router bgp 65010
+ no synchronization
+ bgp log-neighbor-changes
+ network 10.1.30.4 mask 255.255.255.252
+ redistribute connected
+ neighbor 10.1.30.5 remote-as 65000
+ no auto-summary

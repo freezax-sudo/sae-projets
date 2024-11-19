@@ -1,0 +1,101 @@
+SHOWROOM-CE50#sh run
+
+--------------- Routeur principale Siège ---------------
+
+hostname SHOWROOM-CE50
+
+
+--------------- Routeur Showroom ---------------
+
+ip dhcp excluded-address 200.30.10.254
+ip dhcp excluded-address 200.30.20.254
+ip dhcp excluded-address 200.30.30.254
+ip dhcp excluded-address 200.30.40.254
+ip dhcp excluded-address 200.30.50.254
+
+
+--------------- DHCP VLAN 10, 20, 30, 40, 50 ---------------
+
+ip dhcp pool VLAN10
+ network 200.30.10.0 255.255.255.0
+ default-router 200.30.10.254
+ dns-server 100.30.1.1
+ lease 7
+!
+ip dhcp pool VLAN20
+ network 200.30.20.0 255.255.255.0
+ default-router 200.30.20.254
+ dns-server 100.30.1.1
+ lease 7
+!
+ip dhcp pool VLAN30
+ network 200.30.30.0 255.255.255.0
+ dns-server 100.30.1.1
+ default-router 200.30.30.254
+ lease 7
+!
+ip dhcp pool VLAN40
+ network 200.30.40.0 255.255.255.0
+ default-router 200.30.40.254
+ dns-server 100.30.1.1
+ lease 7
+!
+ip dhcp pool VLAN50
+ network 200.30.50.0 255.255.255.0
+ default-router 200.30.50.254
+ dns-server 100.30.1.1
+ lease 7
+
+
+--------------- DHCP VLAN 10, 20, 30, 40 ---------------
+
+interface GigabitEthernet0/0
+ description LIAISON ROUTER
+ ip address 10.3.30.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ description LIAISON SWITCH
+ no ip address
+ duplex auto
+ speed auto
+!
+
+
+--------------- Configuration sous-interfaces ---------------
+
+interface GigabitEthernet0/1.10
+ description VLAN 10
+ encapsulation dot1Q 10
+ ip address 200.30.10.254 255.255.255.0
+!
+interface GigabitEthernet0/1.20
+ description VLAN 20
+ encapsulation dot1Q 20
+ ip address 200.30.20.254 255.255.255.0
+!
+interface GigabitEthernet0/1.30
+ description VLAN 30
+ encapsulation dot1Q 30
+ ip address 200.30.30.254 255.255.255.0
+!
+interface GigabitEthernet0/1.40
+ description VLAN 40
+ encapsulation dot1Q 40
+ ip address 200.30.40.254 255.255.255.0
+!
+interface GigabitEthernet0/1.50
+ description VLAN Wifi-Guest
+ encapsulation dot1Q 50
+ ip address 200.30.50.254 255.255.255.0
+!
+
+
+--------------- Config BGP ---------------
+
+router bgp 65030
+ bgp log-neighbor-changes
+ network 10.3.30.0 mask 255.255.255.252
+ redistribute connected
+ neighbor 10.3.30.1 remote-as 65000

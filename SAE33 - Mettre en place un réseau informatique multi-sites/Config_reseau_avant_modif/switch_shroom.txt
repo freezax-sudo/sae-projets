@@ -1,0 +1,177 @@
+SW-SHOWROOM#sh run
+Building configuration...
+
+Current configuration : 4052 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-SHOWROOM
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$xt0x$wpRWEuL.Ry.wXLzSnnEu0.
+!
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750-24p
+system mtu routing 1500
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3095797120
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3095797120
+ revocation-check none
+ rsakeypair TP-self-signed-3095797120
+!
+!
+crypto pki certificate chain TP-self-signed-3095797120
+ certificate self-signed 01
+  30820244 308201AD A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 33303935 37393731 3230301E 170D3933 30333031 30303031
+  34335A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 30393537
+  39373132 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100BC40 D0DCE98E 08A0AB1C FB4B5140 37451584 A6B6906A EF0EB26C 38B7BFC9
+  BA54595C 3F5118FF 58A0A0A0 DBBE3281 091E6E62 ECBEF629 1870AB33 27804BF2
+  D66F505D DBBA8A9A B6EDC7D5 40AF7946 B7840B31 8270BF71 91ADCE43 336EF2FE
+  97DB48A5 FD5BDBA3 5E737E16 10F99319 1DBC40EF 8F15CBF4 23C99689 720C0577
+  69510203 010001A3 6C306A30 0F060355 1D130101 FF040530 030101FF 30170603
+  551D1104 10300E82 0C53572D 53484F57 524F4F4D 2E301F06 03551D23 04183016
+  8014279D ECC5EDE1 DC9D00AA 904F357D EA22FE6E 1A65301D 0603551D 0E041604
+  14279DEC C5EDE1DC 9D00AA90 4F357DEA 22FE6E1A 65300D06 092A8648 86F70D01
+  01040500 03818100 4820C460 A7D308A4 546C697E A077BCF0 CB730BB5 AE54EE4A
+  3761C3C8 781CD2F7 7FB20AA8 E6C30841 9C50672E C906C17E A043E501 6C53C19E
+  3B946299 96F49AAD C7559180 6B2F82B2 0BA9E999 DDA261ED 7B202991 F5381A5F
+  FDFD3187 251E4CE9 D3B5D2FE 497DCF21 2B4EC55F 5AEFD9D9 9C72BA7C 5AB35A18
+  9E14287C D9B2F9EB
+  quit
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface FastEthernet1/0/1
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/2
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/3
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/4
+ switchport access vlan 40
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/5
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/6
+ spanning-tree portfast
+!
+interface FastEthernet1/0/7
+ spanning-tree portfast
+!
+interface FastEthernet1/0/8
+ spanning-tree portfast
+!
+interface FastEthernet1/0/9
+ switchport access vlan 99
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/10
+ spanning-tree portfast
+!
+interface FastEthernet1/0/11
+ spanning-tree portfast
+!
+interface FastEthernet1/0/12
+ spanning-tree portfast
+!
+interface FastEthernet1/0/13
+ spanning-tree portfast
+!
+interface FastEthernet1/0/14
+ spanning-tree portfast
+!
+interface FastEthernet1/0/15
+ spanning-tree portfast
+!
+interface FastEthernet1/0/16
+ spanning-tree portfast
+!
+interface FastEthernet1/0/17
+ spanning-tree portfast
+!
+interface FastEthernet1/0/18
+ spanning-tree portfast
+!
+interface FastEthernet1/0/19
+ spanning-tree portfast
+!
+interface FastEthernet1/0/20
+ spanning-tree portfast
+!
+interface FastEthernet1/0/21
+ spanning-tree portfast
+!
+interface FastEthernet1/0/22
+ spanning-tree portfast
+!
+interface FastEthernet1/0/23
+ spanning-tree portfast
+!
+interface FastEthernet1/0/24
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40,50,99
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end

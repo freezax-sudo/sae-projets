@@ -1,0 +1,42 @@
+SW-MAGASIN#sh run
+
+--------------- Switch Magasin ---------------
+
+hostname SW-MAGASIN
+
+
+--------------- Config vlan par interfaces (10, 20, 30, 40, 99) avec STP| les autres inrterfaces sont dans le vlan par défaut ---------------
+
+interface FastEthernet1/0/1
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/2
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/3
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/4
+ switchport access vlan 40
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/9
+ switchport access vlan 99
+ switchport mode access
+ spanning-tree portfast
+
+
+--------------- Config interface mode trunk (liaison avec routeur) ---------------
+
+interface FastEthernet1/0/24
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40,99
+ switchport mode trunk
+ spanning-tree portfast

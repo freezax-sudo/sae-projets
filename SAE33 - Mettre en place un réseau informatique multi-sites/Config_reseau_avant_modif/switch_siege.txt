@@ -1,0 +1,184 @@
+
+SW-SIEGE#sh run
+Building configuration...
+
+Current configuration : 4243 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-SIEGE
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$u7iq$i5XyZlzyswDxJYrlu37m51
+!
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750-24p
+system mtu routing 1500
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3095380608
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3095380608
+ revocation-check none
+ rsakeypair TP-self-signed-3095380608
+!
+!
+crypto pki certificate chain TP-self-signed-3095380608
+ certificate self-signed 01
+  30820241 308201AA A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 33303935 33383036 3038301E 170D3933 30333031 30303031
+  34345A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 30393533
+  38303630 3830819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100DE8F FD2D71A7 1DE68CEF 3F0D3B26 D95F6EDD 72800C70 3D7DE997 EFEA325F
+  A2765754 27BA39C8 181A2B98 9BA93E99 034DDD7E 14CD1DC9 70F318F7 53491231
+  3EBC2955 41F9D264 56133996 8EF99CA9 FB301A8F 7279854F BF9CC817 26961482
+  C9F79808 05F26556 97C63365 3DD39585 A8595B28 72D68DA9 93DC3185 87ACA39F
+  9C9F0203 010001A3 69306730 0F060355 1D130101 FF040530 030101FF 30140603
+  551D1104 0D300B82 0953572D 53494547 452E301F 0603551D 23041830 168014E4
+  97AD668B 528FD200 D6D58ED5 A71500EE B746D430 1D060355 1D0E0416 0414E497
+  AD668B52 8FD200D6 D58ED5A7 1500EEB7 46D4300D 06092A86 4886F70D 01010405
+  00038181 006B5284 A529B8B3 5BFCB3D1 7C8CD94E 344D7761 3D499239 475C91CC
+  C585AAD6 24C7B82B 19DD546B 5D6C1F60 46D01306 AC9AA162 D0008FBA 8CDA799B
+  35F22D90 BBC1C8F7 8569DBFE 2FB674D9 8C88D1FC 5B27A1AA 70BC82FB 2CED0A77
+  36C46BEE F43B513D FA9053AF EA40AB9C 412B3AEC A47C2022 30F56004 01B2141F
+  9E553A62 16
+  quit
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface FastEthernet1/0/1
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/2
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/3
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/4
+ switchport access vlan 40
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/5
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/6
+!
+interface FastEthernet1/0/7
+!
+interface FastEthernet1/0/8
+!
+interface FastEthernet1/0/9
+ switchport access vlan 99
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/11
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/12
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/13
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/14
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/15
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/16
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/17
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/18
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/19
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/20
+!
+interface FastEthernet1/0/21
+!
+interface FastEthernet1/0/22
+!
+interface FastEthernet1/0/23
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,99
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface FastEthernet1/0/24
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,99
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface Vlan1
+ no ip address
+!
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end

@@ -1,0 +1,50 @@
+SW-SIEGE#sh run
+
+--------------- Switch Siège ---------------
+
+hostname SW-SIEGE
+
+
+--------------- Config vlan par interfaces (10, 20, 30, 40, 99) avec STP| les autres inrterfaces sont dans le vlan par défaut ---------------
+
+interface FastEthernet1/0/1
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/2
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/3
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/4
+ switchport access vlan 40
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/5
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+
+
+--------------- Config interfaces mode trunk (liaison avec routeur) | Deux liaisons car deux routeurs avec VRRP ---------------
+
+interface FastEthernet1/0/23
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,99
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface FastEthernet1/0/24
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,99
+ switchport mode trunk
+ spanning-tree portfast
+
+

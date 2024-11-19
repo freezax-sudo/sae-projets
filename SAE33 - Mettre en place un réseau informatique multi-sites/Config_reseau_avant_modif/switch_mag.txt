@@ -1,0 +1,175 @@
+SW-MAGASIN#sh run
+Building configuration...
+
+Current configuration : 3985 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-MAGASIN
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$/LAy$GaKd3t2ajzXuGPldyjEDg0
+!
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750-24p
+system mtu routing 1500
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3400351232
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3400351232
+ revocation-check none
+ rsakeypair TP-self-signed-3400351232
+!
+!
+crypto pki certificate chain TP-self-signed-3400351232
+ certificate self-signed 01
+  30820243 308201AC A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 33343030 33353132 3332301E 170D3933 30333031 30303031
+  34305A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 34303033
+  35313233 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100CD6A 61750764 78C3EC2F A6246EDB 3B96CFF0 E5F320CC B264A464 900D7B9A
+  AD68005C 356EA754 D818CB08 4D74DE8B 08C48A2F 353A2FE3 346E811F 1B3A0AD0
+  3C2B69D0 9194D658 67437444 A9603258 F46A1C08 13B93B42 40F4F66A 70482ADB
+  C1D57C86 4FBB79E9 4CA5AD63 84FB744F E31D83D8 D7BAE633 52C2C48C 33EC68EB
+  E0C90203 010001A3 6B306930 0F060355 1D130101 FF040530 030101FF 30160603
+  551D1104 0F300D82 0B53572D 4D414741 53494E2E 301F0603 551D2304 18301680
+  14765F5C 403ED5F1 2D3D6EF8 534901DC 40F939A3 38301D06 03551D0E 04160414
+  765F5C40 3ED5F12D 3D6EF853 4901DC40 F939A338 300D0609 2A864886 F70D0101
+  04050003 81810017 FA313E00 BA12D53E A34EFA5E 6374F602 0D8B51F8 FD95BB2A
+  BAB34A61 C0F29458 EF603D49 4ABEF701 FE783EDC 9E19C215 3F13CDBE C24EA94B
+  8E559BB4 40A90811 82336486 C3CEACC4 3952FB81 9D0D7EE4 C5E0BC09 3E5669E5
+  513069A3 2CB0B673 1E18D5A0 E8F30184 B845FB92 352AD80F CB51E457 67A89D20
+  10FF3788 637757
+  quit
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface FastEthernet1/0/1
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/2
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/3
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/4
+ switchport access vlan 40
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/5
+ spanning-tree portfast
+!
+interface FastEthernet1/0/6
+ spanning-tree portfast
+!
+interface FastEthernet1/0/7
+ spanning-tree portfast
+!
+interface FastEthernet1/0/8
+ spanning-tree portfast
+!
+interface FastEthernet1/0/9
+ switchport access vlan 99
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/10
+ spanning-tree portfast
+!
+interface FastEthernet1/0/11
+ spanning-tree portfast
+!
+interface FastEthernet1/0/12
+ spanning-tree portfast
+!
+interface FastEthernet1/0/13
+ spanning-tree portfast
+!
+interface FastEthernet1/0/14
+ spanning-tree portfast
+!
+interface FastEthernet1/0/15
+ spanning-tree portfast
+!
+interface FastEthernet1/0/16
+ spanning-tree portfast
+!
+interface FastEthernet1/0/17
+ spanning-tree portfast
+!
+interface FastEthernet1/0/18
+ spanning-tree portfast
+!
+interface FastEthernet1/0/19
+ spanning-tree portfast
+!
+interface FastEthernet1/0/20
+ spanning-tree portfast
+!
+interface FastEthernet1/0/21
+ spanning-tree portfast
+!
+interface FastEthernet1/0/22
+ spanning-tree portfast
+!
+interface FastEthernet1/0/23
+ spanning-tree portfast
+!
+interface FastEthernet1/0/24
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40,99
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface Vlan1
+ no ip address
+!
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end
+

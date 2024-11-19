@@ -1,0 +1,207 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.05.28 16:52:32 =~=~=~=~=~=~=~=~=~=~=~=
+sh run
+Building configuration...
+
+Current configuration : 2310 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-MAGASIN
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$/LAy$GaKd3t2ajzXuGPldyjEDg0
+!
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750-24p
+system mtu routing 1500
+!
+!
+ --More--         !
+ --More--         !
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface FastEthernet1/0/1
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/2
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+!
+ --More-- 
+interface FastEthernet1/0/3
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfas
+interface FastEthernet1/0/4
+ switchport access vlan 40
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/5
+ spanning-tree portfast
+!
+interface FastEthernet1/0/6
+ spanning-tree portfast
+!
+interface FastEthernet1/0/7
+ spanning-tree portfast
+!
+interface FastEthernet1/0/8
+ spanning-tree portfast
+!
+interface FastEthernet1/0/9
+ --More--         
+switchport access vlan 99
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet1/0/10
+ spanning-tree portfast
+!
+interface FastEthernet1/0/11
+ spanning-tree portfast
+!
+interface FastEthernet1/0/12
+ spanning-tree portfast
+!
+interface FastEthernet1/0/13
+ spanning-tree portfast
+!
+interface FastEthernet1/0/14
+ spanning-tree portfast
+!
+interface FastEthernet1/0/15
+ spanning-tree portfast
+!
+interface FastEthernet1/0/16
+ --More--          spanning-tree portfast
+!
+interface FastEthernet1/0/17
+ spanning-tree portfast
+!
+interface FastEthernet1/0/18
+ spanning-tree portfast
+!
+interface FastEthernet1/0/19
+ spanning-tree portfast
+!
+interface FastEthernet1/0/20
+ spanning-tree portfast
+!
+interface FastEthernet1/0/21
+ spanning-tree portfast
+!
+interface FastEthernet1/0/22
+ spanning-tree portfast
+!
+interface FastEthernet1/0/23
+ spanning-tree portfast
+!
+ --More--
+interface FastEthernet1/0/24
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40,99
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface Vlan1
+ no ip address
+!
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 5 15
+ --More--
+!
+end
+
+SW-MAGASIN#exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SW-MAGASIN con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SW-SHOWROOM>
+SW-SHOWROOM>
+SW-SHOWROOM>
