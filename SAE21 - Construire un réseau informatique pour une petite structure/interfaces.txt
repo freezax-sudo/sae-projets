@@ -1,0 +1,22 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# Cela permet de diviser le contenu du fichier interfaces dans plusieurs fichiers, par exemple un fichier séparé par interface.
+# Cela peut faciliter la maintenance ou l'automatisation de la configuration réseau.
+source /etc/network/interfaces.d/*
+
+
+# The loopback network interface
+auto lo eth0 eth1 # permet le lancement automatique des carte au démarrage de la machine
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug eth0
+iface eth0 inet dhcp 	# dhcp sur l'interface eth0, serveur dhcp -> portail captif
+iface eth1 inet static	# @ip statique sur l'interface eth1
+	address 172.16.1.1	# attribution de l'@ 172.16.1.1 à la carte eth1
+	netmask 255.255.255.240	# masque du sous réseau /28
+
+# La ligne du dessous, permet d'indiquer la route, il s'agit d'une commande disponible dans le repertoire /bin/
+# Elle indique ici que pour joindre le réseau 172.16.1.32/28 (réseau 3), il faut passer par l'@ 172.16.1.14 (Router relais dhcp). 
+up /sbin/ip route add 172.16.1.32/28 via 172.16.1.14

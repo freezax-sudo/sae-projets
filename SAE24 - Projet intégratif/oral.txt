@@ -1,0 +1,3 @@
+URL avec plusieurs champ
+Ajout d’une d’une grandeur dynamique (num requête + mac) dans l’URL
+Ajout d’un capteur de température dynamique dans l’URL
